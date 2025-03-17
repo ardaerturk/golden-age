@@ -14,8 +14,8 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://goldenageus.com">
     <meta property="og:title" content="Golden Age of America - Premium Patriotic Domain For Sale">
-    <meta property="og:description" content="Secure GoldenAgeUS.com - a premium patriotic domain representing American greatness, prosperity, and traditional values. Limited time offer for patriots.">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1603766806347-544e5b6f0ca9?q=80&w=1200">
+    <meta property="og:description" content="Secure this domain - a premium patriotic domain representing American greatness, prosperity, and traditional values. Limited time offer for patriots.">
+    <meta property="og:image" content="https://i.ytimg.com/vi/FDQ0RCBAREU/hqdefault.jpg">
     <meta property="og:site_name" content="GoldenAgeUS.com">
     
     <!-- Twitter -->
@@ -23,7 +23,7 @@
     <meta name="twitter:url" content="https://goldenageus.com">
     <meta name="twitter:title" content="Golden Age of America - Premium Patriotic Domain For Sale">
     <meta name="twitter:description" content="Secure GoldenAgeUS.com - a premium patriotic domain representing American greatness, prosperity, and traditional values. Limited time offer for patriots.">
-    <meta name="twitter:image" content="https://images.unsplash.com/photo-1603766806347-544e5b6f0ca9?q=80&w=1200">
+    <meta name="twitter:image" content="https://i.ytimg.com/vi/FDQ0RCBAREU/hqdefault.jpg">
     
     <!-- Favicon -->
     <link rel="icon" href="https://img.icons8.com/color/48/usa.png">
@@ -83,7 +83,7 @@
         "@type": "Product",
         "name": "GoldenAgeUS.com",
         "description": "A premium patriotic domain representing American greatness, prosperity, and traditional values.",
-        "image": "https://images.unsplash.com/photo-1603766806347-544e5b6f0ca9?q=80&w=1200",
+        "image": "https://i.ytimg.com/vi/FDQ0RCBAREU/hqdefault.jpg",
         "offers": {
             "@type": "Offer",
             "availability": "https://schema.org/InStock",
@@ -823,6 +823,32 @@
     </div>
     
     <script>
+        // Path-based configuration for different URLs
+        const pathConfigs = {
+            '/': {
+                title: 'Premium Patriotic Domain For Sale',
+                description: 'a premium patriotic domain representing American greatness, prosperity, and traditional values. Limited time offer for patriots.',
+                image: 'https://i.ytimg.com/vi/FDQ0RCBAREU/hqdefault.jpg',
+                keywords: 'Golden Age, America, USA, patriotic domain, American greatness, domain for sale, premium domain, America First',
+                cardType: 'summary_large_image'
+            },
+            '/about': {
+                title: 'About Our Patriotic Vision',
+                description: 'Learn about the vision and values behind our premium patriotic domain representing American greatness and prosperity.',
+                image: 'https://i.ytimg.com/vi/FDQ0RCBAREU/hqdefault.jpg',
+                keywords: 'About, Golden Age, America, USA, patriotic vision, American values',
+                cardType: 'summary'
+            },
+            '/contact': {
+                title: 'Contact Us',
+                description: 'Get in touch with us about acquiring this premium patriotic domain representing American greatness.',
+                image: 'https://i.ytimg.com/vi/FDQ0RCBAREU/hqdefault.jpg',
+                keywords: 'Contact, Golden Age, America, USA, domain inquiry, purchase domain',
+                cardType: 'summary'
+            }
+            // Add more path configurations as needed
+        };
+        
         // Dynamic Domain Name
         function getCurrentDomain() {
             // Get from URL in production or use fallback for development
@@ -831,8 +857,25 @@
                 : "GoldenAgeUS.com";
         }
         
+        // Get current path or default to home
+        function getCurrentPath() {
+            const path = window.location.pathname;
+            // Normalize path to ensure it starts with / and remove trailing /
+            const normalizedPath = path === '' ? '/' : path.endsWith('/') && path !== '/' ? path.slice(0, -1) : path;
+            return normalizedPath;
+        }
+        
+        // Get configuration for current path
+        function getPathConfig() {
+            const currentPath = getCurrentPath();
+            // Return config for current path or fall back to default (home)
+            return pathConfigs[currentPath] || pathConfigs['/'];
+        }
+        
         function updateDomainReferences() {
             const currentDomain = getCurrentDomain();
+            const currentPath = getCurrentPath();
+            const config = getPathConfig();
             
             // Update all elements with domain-name class
             document.querySelectorAll('.domain-name').forEach(el => {
@@ -840,40 +883,63 @@
             });
             
             // Update page title and meta tags
-            document.title = `${currentDomain} - Premium Patriotic Domain For Sale`;
+            document.title = `${currentDomain} - ${config.title}`;
             
             // Update meta tags
             document.querySelector('meta[name="description"]').setAttribute(
                 'content', 
-                `Secure ${currentDomain} - a premium patriotic domain representing American greatness, prosperity, and traditional values. Limited time offer for patriots.`
+                `Secure ${currentDomain} - ${config.description}`
             );
+            
+            document.querySelector('meta[name="keywords"]').setAttribute(
+                'content', 
+                config.keywords
+            );
+            
+            // Update Open Graph meta tags
             document.querySelector('meta[property="og:title"]').setAttribute(
                 'content', 
-                `${currentDomain} - Premium Patriotic Domain For Sale`
+                `${currentDomain} - ${config.title}`
             );
             document.querySelector('meta[property="og:description"]').setAttribute(
                 'content', 
-                `Secure ${currentDomain} - a premium patriotic domain representing American greatness, prosperity, and traditional values. Limited time offer for patriots.`
+                `Secure ${currentDomain} - ${config.description}`
             );
             document.querySelector('meta[property="og:url"]').setAttribute(
                 'content', 
-                `https://${currentDomain}`
+                `https://${currentDomain}${currentPath}`
+            );
+            document.querySelector('meta[property="og:image"]').setAttribute(
+                'content', 
+                config.image
+            );
+            
+            // Update Twitter meta tags
+            document.querySelector('meta[name="twitter:card"]').setAttribute(
+                'content', 
+                config.cardType
             );
             document.querySelector('meta[name="twitter:title"]').setAttribute(
                 'content', 
-                `${currentDomain} - Premium Patriotic Domain For Sale`
+                `${currentDomain} - ${config.title}`
             );
             document.querySelector('meta[name="twitter:description"]').setAttribute(
                 'content', 
-                `Secure ${currentDomain} - a premium patriotic domain representing American greatness, prosperity, and traditional values. Limited time offer for patriots.`
+                `Secure ${currentDomain} - ${config.description}`
             );
             document.querySelector('meta[name="twitter:url"]').setAttribute(
                 'content', 
-                `https://${currentDomain}`
+                `https://${currentDomain}${currentPath}`
             );
+            document.querySelector('meta[name="twitter:image"]').setAttribute(
+                'content', 
+                config.image
+            );
+            
+            // Update canonical URL
             document.querySelector('link[rel="canonical"]').setAttribute(
                 'href', 
-                `https://${currentDomain}`
+                `https://${currentDomain}${currentPath}`
             );
             
             // Update structured data
@@ -882,7 +948,9 @@
                 const data = JSON.parse(productSchema.textContent);
                 if (data['@type'] === 'Product') {
                     data.name = currentDomain;
-                    data.offers.url = `https://${currentDomain}`;
+                    data.description = config.description;
+                    data.image = config.image;
+                    data.offers.url = `https://${currentDomain}${currentPath}`;
                     data.brand.name = currentDomain;
                     productSchema.textContent = JSON.stringify(data, null, 4);
                 }
@@ -893,7 +961,7 @@
                 const data = JSON.parse(orgSchema.textContent);
                 if (data['@type'] === 'Organization') {
                     data.name = currentDomain;
-                    data.url = `https://${currentDomain}`;
+                    data.url = `https://${currentDomain}${currentPath}`;
                     orgSchema.textContent = JSON.stringify(data, null, 4);
                 }
             }
