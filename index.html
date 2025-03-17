@@ -852,9 +852,16 @@
         // Dynamic Domain Name
         function getCurrentDomain() {
             // Get from URL in production or use fallback for development
-            return window.location.hostname !== 'localhost' && window.location.hostname !== ''
+            let domain = window.location.hostname !== 'localhost' && window.location.hostname !== ''
                 ? window.location.hostname 
                 : "GoldenAgeUS.com";
+            
+            // Remove www. prefix if it exists
+            if (domain.startsWith('www.')) {
+                domain = domain.substring(4);
+            }
+            
+            return domain;
         }
         
         // Get current path or default to home
